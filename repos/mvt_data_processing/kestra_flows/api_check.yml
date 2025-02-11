@@ -1,0 +1,27 @@
+id: api_check
+namespace: data.processing
+
+tasks:
+  - id: api
+    type: io.kestra.plugin.core.http.Request
+    uri: "{{ globals['api-uri'] }}/sources"
+    method: "GET"
+    headers:
+      Authorization: "{{ globals['api-key'] }}"
+
+  - id: check_status
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.api.code != 200 }}"
+    then:
+      - id: unhealthy
+        type: io.kestra.plugin.core.log.Log
+        message: Server unhealthy!!! Response {{ outputs.api.body }}
+    else:
+      - id: healthy
+        type: io.kestra.plugin.core.log.Log
+        message: Everything is fine!
+
+triggers:
+ - id: daily
+   type: io.kestra.plugin.core.trigger.Schedule
+   cron: "0 6 * * *"

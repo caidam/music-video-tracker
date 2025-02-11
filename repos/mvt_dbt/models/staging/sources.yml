@@ -1,0 +1,56 @@
+sources:
+  - name: project_project_raw
+    tables:
+      - name: base_source
+        columns:
+          - name: id
+          - name: url
+          - name: type
+          - name: date_added
+          - name: added_by_id
+
+      - name: base_usersource
+        columns:
+          - name: id
+          - name: date_started
+          - name: date_stopped
+          - name: source_id
+          - name: user_id
+          - name: updated_at
+
+      - name: raw_youtube_channel_snippet
+        columns:
+          - name: channel_id
+          - name: title
+          - name: description
+          - name: published_at
+          - name: thumbnails
+          - name: country
+          - name: loaded_at
+
+      - name: raw_youtube_channel_stats
+        columns:
+          - name: channel_id
+          - name: view_count
+          - name: video_count
+          - name: loaded_at
+
+      - name: raw_yt_snippet
+        columns:
+          - name: video_id
+          - name: title
+          - name: channel_id
+          - name: channel_title
+          - name: description
+          - name: tags
+          - name: published_at
+          - name: thumbnails
+          - name: loaded_at
+
+      - name: raw_yt_stats
+        columns:
+          - name: video_id
+          - name: view_count
+          - name: like_count
+          - name: comment_count
+          - name: loaded_at

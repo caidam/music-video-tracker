@@ -1,0 +1,44 @@
+id: api_load_youtube_stats
+namespace: data.processing
+
+tasks:
+  - id: api
+    type: io.kestra.plugin.core.http.Request
+    uri: "{{ globals['api-uri'] }}/load_youtube_stats"
+    method: "GET"
+    headers:
+      Authorization: "{{ globals['api-key'] }}"
+
+  - id: check_status
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.api.code != 200 }}"
+    then:
+      - id: unhealthy
+        type: io.kestra.plugin.core.log.Log
+        message: Server unhealthy!!! Response {{ outputs.api.body }}
+    else:
+      - id: healthy
+        type: io.kestra.plugin.core.log.Log
+        message: Everything is fine! Response {{ outputs.api.body }}
+
+triggers:
+  - id: multipleListenFlow
+    type: io.kestra.plugin.core.trigger.Flow
+    conditions:
+      - id: multiple
+        type: io.kestra.plugin.core.condition.MultipleCondition
+        window: PT1H # modify this if needed
+        windowAdvance: P0D
+        conditions:
+          flow-a:
+            type: io.kestra.plugin.core.condition.ExecutionFlowCondition
+            namespace: data.processing
+            flowId: api_check
+          flow-b:
+            type: io.kestra.plugin.core.condition.ExecutionFlowCondition
+            namespace: data.processing
+            flowId: api_load_base_source
+          flow-c:
+            type: io.kestra.plugin.core.condition.ExecutionFlowCondition
+            namespace: data.processing
+            flowId: api_load_base_usersource

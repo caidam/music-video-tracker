@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  django-container:
+    container_name: django-container
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: /bin/bash -c "pip install -r requirements.txt && python app.py" #&& python manage.py runserver 0.0.0.0:8000"
+    volumes:
+       - .:/backend
+    ports:
+      - "8000:8000"
+    tty: true # equivalent for -t
+    stdin_open: true # equivalent for -i

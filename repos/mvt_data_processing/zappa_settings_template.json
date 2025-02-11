@@ -1,0 +1,29 @@
+{
+    "dev": {
+        "app_function": "api.app",
+        "aws_region": "eu-north-1",
+        "exclude": [
+            "boto3",
+            "dateutil",
+            "botocore",
+            "s3transfer",
+            "concurrent",
+            ".env",
+            "notes.md",
+            "zappa_settings_template.json",
+            "kestra_flows"
+        ],
+        "profile_name": "default",
+        "project_name": "data-processing",
+        "runtime": "python3.10",
+        "s3_bucket": "//name of the s3 bucket",
+        "slim_handler": "True",
+        "environment_variables": {
+            "PG_URI": "// uri of the postgresql instance",
+            "GOOGLE_APPLICATION_CREDENTIAL_INFO": "// base 64 endoded keyfile.json",
+            "DEBUG": "True",
+            "API_SECRET_KEY": "// secret key for api auth",
+            "GOOGLE_API_DEVELOPER_KEY": "// key"         
+        }
+    }
+}

@@ -1,0 +1,394 @@
+version: 2
+
+models:
+  ##
+  - name: dim_tracking
+    description: ""
+    columns:
+      - name: tracking_id
+        data_type: int64
+        description: ""
+        tests:
+            - unique
+            - not_null
+
+      - name: tracking_date_started
+        data_type: date
+        description: ""
+
+      - name: tracking_date_stopped
+        data_type: date
+        description: ""
+
+      - name: tracking_source_id
+        data_type: int64
+        description: ""
+
+      - name: tracking_user_id
+        data_type: int64
+        description: ""
+
+      - name: tracking_updated_at
+        data_type: date
+        description: ""
+
+      - name: tracking_duration_days
+        data_type: int64
+        description: ""
+
+  ##
+  - name: dim_youtube_channel
+    description: ""
+    columns:
+      - name: youtube_channel_id
+        data_type: string
+        description: ""
+        tests:
+            - unique
+            - not_null
+
+      - name: youtube_channel_title
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_description
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_channel_medium_thumbnail_url
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_country
+        data_type: string
+        description: ""
+    
+  ##
+  - name: dim_youtube_video
+    description: ""
+    columns:
+      - name: youtube_video_source_id
+        data_type: int64
+        description: ""
+        tests:
+            - unique
+            - not_null
+
+      - name: youtube_video_id
+        data_type: string
+        description: ""
+
+      - name: youtube_video_url
+        data_type: string
+        description: ""
+
+      - name: youtube_video_source_first_date_added
+        data_type: date
+        description: ""
+
+      - name: youtube_video_first_added_by_user_id
+        data_type: int64
+        description: ""
+
+      - name: youtube_video_title
+        data_type: string
+        description: ""
+
+      - name: youtube_video_channel_id
+        data_type: string
+        description: ""
+
+      - name: youtube_video_description
+        data_type: string
+        description: ""
+
+      - name: youtube_video_tags
+        data_type: string
+        description: ""
+
+      - name: youtube_video_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_video_thumbnail_url
+        data_type: string
+        description: ""
+
+
+  ##
+  - name: fact_youtube_stats
+    description: ""
+    columns:
+      - name: youtube_stats_id
+        data_type: string
+        description: ""
+        tests:
+            - unique
+            - not_null
+
+      - name: youtube_video_id
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_id
+        data_type: string
+        description: ""
+
+      - name: ref_day
+        data_type: date
+        description: ""
+
+      - name: video_view_count
+        data_type: int64
+        description: ""
+
+      - name: video_like_count
+        data_type: int64
+        description: ""
+
+      - name: video_comment_count
+        data_type: int64
+        description: ""
+
+      - name: channel_view_count
+        data_type: int64
+        description: ""
+
+      - name: channel_video_count
+        data_type: int64
+        description: ""
+
+      - name: daily_views
+        data_type: int64
+        description: ""
+
+      - name: daily_likes
+        data_type: int64
+        description: ""
+
+      - name: daily_comments
+        data_type: int64
+        description: ""
+
+      - name: daily_channel_views
+        data_type: int64
+        description: ""
+
+      - name: daily_channel_videos
+        data_type: int64
+        description: ""
+
+      - name: weekly_views
+        data_type: int64
+        description: ""
+
+      - name: weekly_likes
+        data_type: int64
+        description: ""
+
+      - name: weekly_comments
+        data_type: int64
+        description: ""
+
+      - name: weekly_channel_views
+        data_type: int64
+        description: ""
+
+      - name: weekly_channel_videos
+        data_type: int64
+        description: ""
+
+      - name: monthly_views
+        data_type: int64
+        description: ""
+
+      - name: monthly_likes
+        data_type: int64
+        description: ""
+
+      - name: monthly_comments
+        data_type: int64
+        description: ""
+
+      - name: monthly_channel_views
+        data_type: int64
+        description: ""
+
+      - name: monthly_channel_videos
+        data_type: int64
+        description: ""
+
+      - name: yearly_views
+        data_type: int64
+        description: ""
+
+      - name: yearly_likes
+        data_type: int64
+        description: ""
+
+      - name: yearly_comments
+        data_type: int64
+        description: ""
+
+      - name: yearly_channel_views
+        data_type: int64
+        description: ""
+
+      - name: yearly_channel_videos
+        data_type: int64
+        description: ""
+
+      - name: daily_views_dod_volume
+        data_type: int64
+        description: ""
+
+      - name: daily_views_dod_variation
+        data_type: float64
+        description: ""
+
+      - name: daily_views_dod_w_volume
+        data_type: int64
+        description: ""
+
+      - name: daily_views_dod_w_variation
+        data_type: float64
+        description: ""
+
+      - name: daily_views_dod_m_volume
+        data_type: int64
+        description: ""
+
+      - name: daily_views_dod_m_variation
+        data_type: float64
+        description: ""
+
+      - name: weekly_views_wow_volume
+        data_type: int64
+        description: ""
+
+      - name: weekly_views_wow_variation
+        data_type: float64
+        description: ""
+
+      - name: weekly_views_mom_m_volume
+        data_type: int64
+        description: ""
+
+      - name: weekly_views_mom_m_variation
+        data_type: float64
+        description: ""
+
+      - name: monthly_views_mom_volume
+        data_type: int64
+        description: ""
+
+      - name: monthly_views_mom_variation
+        data_type: float64
+        description: ""
+
+      - name: youtube_video_title
+        data_type: string
+        description: ""
+
+      - name: youtube_video_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_video_thumbnail_url
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_title
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_channel_medium_thumbnail_url
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_country
+        data_type: string
+        description: ""
+
+  ##
+  - name: summary_youtube_video_channel
+    description: ""
+    columns:
+      - name: youtube_video_channel_id
+        data_type: string
+        description: ""
+        tests:
+            - unique
+            - not_null
+
+      - name: youtube_video_source_id
+        data_type: int64
+        description: ""
+
+      - name: youtube_video_id
+        data_type: string
+        description: ""
+
+      - name: youtube_video_url
+        data_type: string
+        description: ""
+
+      - name: youtube_video_source_first_date_added
+        data_type: date
+        description: ""
+
+      - name: youtube_video_first_added_by_user_id
+        data_type: int64
+        description: ""
+
+      - name: youtube_video_title
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_id
+        data_type: string
+        description: ""
+
+      - name: youtube_video_description
+        data_type: string
+        description: ""
+
+      - name: youtube_video_tags
+        data_type: string
+        description: ""
+
+      - name: youtube_video_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_video_thumbnail_url
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_title
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_description
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_published_at
+        data_type: date
+        description: ""
+
+      - name: youtube_channel_medium_thumbnail_url
+        data_type: string
+        description: ""
+
+      - name: youtube_channel_country
+        data_type: string
+        description: ""

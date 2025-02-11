@@ -1,0 +1,20 @@
+venv
+.env
+
+# Django
+*.log
+*.pot
+*.pyc
+**/__pycache__/
+__pycache__
+*/__pycache__
+
+db.sqlite3
+media 
+# secrets__.py
+secrets_json.py
+
+
+# zappa
+
+zappa_settings.json

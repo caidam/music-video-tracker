@@ -1,0 +1,33 @@
+id: api_load_base_source
+namespace: data.processing
+
+tasks:
+  - id: api
+    type: io.kestra.plugin.core.http.Request
+    uri: "{{ globals['api-uri'] }}/load_data/base_source"
+    method: "GET"
+    headers:
+      Authorization: "{{ globals['api-key'] }}"
+
+  - id: check_status
+    type: io.kestra.plugin.core.flow.If
+    condition: "{{ outputs.api.code != 200 }}"
+    then:
+      - id: unhealthy
+        type: io.kestra.plugin.core.log.Log
+        message: Server unhealthy!!! Response {{ outputs.api.body }}
+    else:
+      - id: healthy
+        type: io.kestra.plugin.core.log.Log
+        message: Everything is fine! Response {{ outputs.api.body }}
+
+triggers:
+  - id: listenFlow
+    type: io.kestra.plugin.core.trigger.Flow
+    conditions:
+      - type: io.kestra.plugin.core.condition.ExecutionFlowCondition
+        namespace: data.processing
+        flowId: api_check
+      - type: io.kestra.plugin.core.condition.ExecutionStatusCondition
+        in:
+          - SUCCESS

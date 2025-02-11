@@ -1,0 +1,22 @@
+{
+    "dev": {
+        "aws_region": "eu-north-1",
+        "django_settings": "backend.settings",
+        "exclude": [
+            "boto3",
+            "dateutil",
+            "botocore",
+            "s3transfer",
+            "concurrent"
+        ],
+        "profile_name": "default",
+        "project_name": "project-project",
+        "runtime": "python3.10",
+        "s3_bucket": "bucket_name(has to be globally unique)",
+        "environment_variables": {
+            "VAULT_TOKEN": "vault_token",
+            "VAULT_MOUNT_POINT": "vault_mount_point",
+            "VAULT_URL": "vault_url"
+        }
+    }
+}
