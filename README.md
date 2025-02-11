@@ -19,9 +19,8 @@ A multi tier, data oriented web application that lets you track your favorite Yo
   - [Technical Doc (in french)](./misc/public_mvt_dossier_projet.pdf)
 
 - Repos
-
+  
   - [Frontend Repo]()
   - [Backend Repo]()
   - [Data Processing Repo]()
   - [dbt Repo]()
-
