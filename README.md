@@ -20,7 +20,7 @@ A multi tier, data oriented web application that lets you track your favorite Yo
 
 - Repos
   
-  - [Frontend Repo]()
-  - [Backend Repo]()
-  - [Data Processing Repo]()
-  - [dbt Repo]()
+  - [Frontend Repo](./repos/mvt_frontend)
+  - [Backend Repo](./repos/mvt_backend)
+  - [Data Processing Repo](./repos/mvt_data_processing)
+  - [dbt Repo](./repos/mvt_dbt)
