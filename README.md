@@ -23,4 +23,4 @@ A multi tier, data oriented web application that lets you track your favorite Yo
 
 - More
 
-  - [Technical Doc (in french)]()
+  - [Technical Doc (in french)](./misc/public_mvt_dossier_projet.pdf)
